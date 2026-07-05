@@ -17,7 +17,7 @@ You can also run them separately: `npm run server` (API) and `npm run dev` (fron
 
 ### Hostinger (live site — punjabiwelfaretrust.org)
 
-Open https://punjabiwelfaretrust.org:8080 for the website and https://punjabiwelfaretrust.org:8080/admin for the admin panel.
+Open https://punjabiwelfaretrust.org for the website and https://punjabiwelfaretrust.org/admin for the admin panel.
 
 The live site runs entirely on Hostinger shared hosting: static frontend + a PHP port of the API
 (`hosting/api/index.php`, same endpoints) + MySQL database `u242596167_websitedata`.
