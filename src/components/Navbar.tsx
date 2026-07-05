@@ -1,27 +1,30 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.jpeg";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const navLinks = [
-  { label: "HOME", href: "#" },
-  { label: "ABOUT US", href: "#about-us" },
-  { label: "OUR WORK", href: "#our-work" },
-  { label: "SUPPORTERS", href: "#testimonials" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT US", href: "/#about-us" },
+  { label: "OUR WORK", href: "/#our-work" },
+  { label: "RECOGNITION", href: "/certificates" },
+  { label: "SUPPORTERS", href: "/#testimonials" },
+  { label: "CONTACT", href: "/#contact" },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { settings } = useSiteContent();
+  const general = settings.general;
 
   return (
     <nav className="bg-background sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <a href="#" className="flex items-center gap-2">
-          <img src={logo} alt="Punjabi Welfare Trust" className="w-10 h-10 rounded-full object-cover" />
+          <img src={general.logo} alt={general.siteName} className="w-10 h-10 rounded-full object-cover" />
           <div>
-            <span className="font-display font-bold text-lg leading-tight block text-foreground">Punjabi Welfare</span>
-            <span className="text-xs text-primary font-semibold">Trust NGO</span>
+            <span className="font-display font-bold text-lg leading-tight block text-foreground">{general.navTitle}</span>
+            <span className="text-xs text-primary font-semibold">{general.navSubtitle}</span>
           </div>
         </a>
 

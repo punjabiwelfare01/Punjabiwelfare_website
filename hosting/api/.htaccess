@@ -1,0 +1,7 @@
+# Never serve the config file
+<Files "config.php">
+  Require all denied
+</Files>
+<Files "config.example.php">
+  Require all denied
+</Files>

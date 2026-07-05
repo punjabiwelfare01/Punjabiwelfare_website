@@ -1,31 +1,26 @@
 import { motion } from "framer-motion";
-import volSwejal from "@/assets/volSwejal.jpeg";
-import vol22 from "@/assets/volunteer-22.jpeg";
-import vol23 from "@/assets/volunteer-23.jpeg";
-
-const volunteers = [
-   { name: "Madhur Sharma", role: "WEBSITE DEVELOPER", photo: vol23 },
-   { name: "Swejal Gupta", role: "WEBSITE DEVELOPER", photo: volSwejal },
-  { name: "Prem Singh", role: "WEBSITE DEVELOPER", photo: vol22 },
- 
-];
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const VolunteerTeamSection = () => {
+  const { collections, settings } = useSiteContent();
+  const volunteers = collections.volunteers;
+  const section = settings.volunteersSection;
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">Our Volunteers</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">{section.heading}</h2>
           <div className="w-16 h-1 bg-primary mx-auto mb-4 rounded-full" />
           <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
-            Meet the dedicated young volunteers who are driving change on the ground every day.
+            {section.description}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {volunteers.map((v, i) => (
             <motion.div
-              key={v.name}
+              key={v.id ?? v.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

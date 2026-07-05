@@ -1,0 +1,16 @@
+Options -Indexes
+RewriteEngine On
+
+# Pass the Authorization header through to PHP (needed for admin JWT auth)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Route all /api/* requests to the PHP API
+RewriteRule ^api(/.*)?$ api/index.php [QSA,L]
+
+# Serve existing files/directories (site assets, /uploads images) directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Everything else is a SPA route (/, /certificates, /admin...) -> index.html
+RewriteRule ^ index.html [L]
